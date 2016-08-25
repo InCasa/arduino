@@ -1,3 +1,20 @@
+//Projeto InCasa
+
+//Pinos
+//1 - 
+//2 - 
+//3 - 
+//4 - 
+//5 - Sensor Temperatura
+//6 - 
+//7 - Rele
+//8 - Rele
+//9 - Rele
+//10 - Rele
+//11 - 
+//12 - 
+//13 - 
+
 // Pinos Rele
 int rele1 = 7;
 int rele2 = 8;
