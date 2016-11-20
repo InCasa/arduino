@@ -10,7 +10,7 @@
 //3 -
 //4 -
 //5 - Sensor Temperatura
-//6 -
+//6 - Sensor Presenca
 //7 - Rele
 //8 - Rele
 //9 - Rele
@@ -33,6 +33,10 @@ int rele1 = 7;
 int rele2 = 8;
 int rele3 = 9;
 int rele4 = 10;
+
+//Presenca
+int pinopir = 6;  //Pino do sensor
+int movimento;  //Variavel para guardar valor do sensor de presenca
 
 // Define pino e sensor DHT22
 DHT dht(5, DHT22);
@@ -72,6 +76,8 @@ void setup() {
   pinMode(rele3, OUTPUT);
   pinMode(rele4, OUTPUT);
   dht.begin();
+
+  pinMode(pinopir, INPUT); //Define o pino sensor de presenca como entrada
 
   Serial.begin(9600);
 
@@ -128,6 +134,10 @@ void desligaRele(int canal) {
       digitalWrite(rele4, HIGH);
       break;
   }
+}
+
+void Movimento(){
+  movimento = digitalRead(pinopir); //Le o valor do sensor de presenca
 }
 
 void Temperatura() {
