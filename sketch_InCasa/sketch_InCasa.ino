@@ -1,8 +1,11 @@
 //Projeto InCasa
+//https://github.com/incasa
 //Includes
 #include <Ethernet.h>
 #include <DHT.h>
 #include <SPI.h>
+
+String readString;
 
 //Pinos
 //1 -
@@ -21,18 +24,23 @@
 //A0 - LDR
 
 //Definicoes de IP, mascara de rede e gateway
-byte mac[] = {
-  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
-};
-IPAddress ip(192, 168, 1, 150);       //Define o endereco IP
-IPAddress gateway(192, 168, 1, 1);  //Define o gateway
-IPAddress subnet(255, 255, 255, 0); //Define a mascara
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+byte ip[] = { 192, 168, 1, 150 };
+byte gateway[] = { 192, 168, 1, 1 };
+byte subnet[] = { 255, 255, 255, 0 };
+
+EthernetServer server(80);
 
 // Pinos Rele
-int rele1 = 7;
-int rele2 = 8;
-int rele3 = 9;
-int rele4 = 10;
+int pino_rele1 = 7;
+int pino_rele2 = 8;
+int pino_rele3 = 9;
+int pino_rele4 = 10;
+
+boolean ligado = true;
+boolean ligado_2 = true;
+boolean ligado_3 = true;
+boolean ligado_4 = true;
 
 //Presenca
 int pinopir = 6;  //Pino do sensor
@@ -45,58 +53,37 @@ DHT dht(5, DHT22);
 int ldrPin = 0; //LDR no pino analígico 8
 int ldrValor = 0; //Valor lido do LDR
 
-// Definições das requests
-
-// server
-char serverName[] = "192.168.1.5";
-
-// port
-int serverPort = 80;
-
-// page server
-char pageName[] = "/backend/index.php";
-
-EthernetClient client;
-int totalCount = 0; 
-char params[32];
-
-// Tempo de delay
-
-#define delayMillis 30000UL
-
-unsigned long thisMillis = 0;
-unsigned long lastMillis = 0;
-
 void setup() {
-  //Inicializa a interface de rede
+
+  Serial.begin(9600);
+  pinMode(pino_rele1, OUTPUT);
+  pinMode(pino_rele2, OUTPUT);
+ 
+  //Inicializa Ethernet Shield
   Ethernet.begin(mac, ip, gateway, subnet);
+  server.begin();
+ 
+  Serial.println("InCasa - Automacao Residencial"); 
+  
   // Pinos rele para saida
-  pinMode(rele1, OUTPUT);
-  pinMode(rele2, OUTPUT);
-  pinMode(rele3, OUTPUT);
-  pinMode(rele4, OUTPUT);
+  pinMode(pino_rele1, OUTPUT);
+  pinMode(pino_rele2, OUTPUT);
+  pinMode(pino_rele3, OUTPUT);
+  pinMode(pino_rele4, OUTPUT);
   dht.begin();
 
   pinMode(pinopir, INPUT); //Define o pino sensor de presenca como entrada
 
-  Serial.begin(9600);
-
-  // Configuração inicial ethernet
-  // disable SD SPI
-  pinMode(4,OUTPUT);
-  digitalWrite(4,HIGH);
-
-  Serial.print(F("Starting ethernet"));
-  if(!Ethernet.begin(mac)) Serial.println(F("failed"));
-  else Serial.println(Ethernet.localIP());
-
-  delay(2000);
-  Serial.println(F("Ready"));
+  //Desliga os dois reles
+  digitalWrite(pino_rele1, HIGH);
+  digitalWrite(pino_rele2, HIGH);
+  digitalWrite(pino_rele3, HIGH);
+  digitalWrite(pino_rele4, HIGH);
 
 }
 
 void loop() {
-  request();
+  servidor();
 }
 
 // Metodos
@@ -104,16 +91,16 @@ void loop() {
 void acionaRele(int canal) {
   switch (canal) {
     case 1:
-      digitalWrite(rele1, LOW);
+      digitalWrite(pino_rele1, LOW);
       break;
     case 2:
-      digitalWrite(rele2, LOW);
+      digitalWrite(pino_rele2, LOW);
       break;
     case 3:
-      digitalWrite(rele3, LOW);
+      digitalWrite(pino_rele3, LOW);
       break;
     case 4:
-      digitalWrite(rele4, LOW);
+      digitalWrite(pino_rele4, LOW);
       break;
   }
 }
@@ -122,16 +109,16 @@ void acionaRele(int canal) {
 void desligaRele(int canal) {
   switch (canal) {
     case 1:
-      digitalWrite(rele1, HIGH);
+      digitalWrite(pino_rele1, HIGH);
       break;
     case 2:
-      digitalWrite(rele2, HIGH);
+      digitalWrite(pino_rele2, HIGH);
       break;
     case 3:
-      digitalWrite(rele3, HIGH);
+      digitalWrite(pino_rele3, HIGH);
       break;
     case 4:
-      digitalWrite(rele4, HIGH);
+      digitalWrite(pino_rele4, HIGH);
       break;
   }
 }
@@ -153,67 +140,94 @@ void Luminosidade() {
   ldrValor = analogRead(ldrPin); //O valor lido será entre 0 e 1023
 }
 
-void request() {  
-  thisMillis = millis();
-
-  if(thisMillis - lastMillis > delayMillis) {
-    lastMillis = thisMillis;
-
-    // parâmetros
-    sprintf(params,"temp1=%i",totalCount);     
-    if(!postPage(serverName,serverPort,pageName,params)) Serial.print(F("Fail "));
-    else Serial.print(F("Pass "));
-    totalCount++;
-    Serial.println(totalCount,DEC);
-  }    
-
-}
-
-byte postPage(char* domainBuffer,int thisPort,char* page,char* thisData) {
-  int inChar;
-  char outBuf[64];
-
-  Serial.print(F("Conectando"));
-
-  if(client.connect(domainBuffer,thisPort) == 1) {
-    Serial.println(F("Conectado"));
-
-    // cabeçalho requisição
-    sprintf(outBuf,"POST %s HTTP/1.1",page);
-    client.println(outBuf);
-    sprintf(outBuf,"Host: %s",domainBuffer);
-    client.println(outBuf);
-    client.println(F("Connection: close\r\nContent-Type: application/x-www-form-urlencoded"));
-    sprintf(outBuf,"Content-Length: %u\r\n",strlen(thisData));
-    client.println(outBuf);
-
-    // body
-    client.print(thisData);
-  } else {
-    Serial.println(F("Falha"));
-    return 0;
-  }
-
-  int connectLoop = 0;
-
-  while(client.connected()) {
-    while(client.available()) {
-      inChar = client.read();
-      Serial.write(inChar);
-      connectLoop = 0;
+void servidor() {  
+  EthernetClient client = server.available();
+  if (client) {
+    while (client.connected())
+    {
+      if (client.available())
+      {
+        char c = client.read();
+        if (readString.length() < 100) {
+          readString += c;
+        }
+        if (c == '\n')
+        {
+          //Controle do rele1
+          Serial.println(readString);
+          //Liga o Rele 1
+          if (readString.indexOf("?ligar") > 0)
+          {
+            digitalWrite(pino_rele1, LOW);
+            Serial.println("Rele 1 Ligado");
+            ligado = false;
+          }
+          else
+          {
+            //Desliga o Rele 1
+            if (readString.indexOf("?desligar") > 0)
+            {
+              digitalWrite(pino_rele1, HIGH);
+              Serial.println("Rele 1 Desligado");
+              ligado = true;
+            }
+          }
+ 
+          //Controle do rele2
+          Serial.println(readString);
+          //Liga o Rele 2
+          if (readString.indexOf("?2_ligar") > 0)
+          {
+            digitalWrite(pino_rele2, LOW);
+            Serial.println("Rele 2 Ligado");
+            ligado_2 = false;
+          }
+          else
+          {
+            //Desliga o Rele 2
+            if (readString.indexOf("?2_desligar") > 0)
+            {
+              digitalWrite(pino_rele2, HIGH);
+              Serial.println("Rele 2 Desligado");
+              ligado_2 = true;
+            }
+          }
+          readString = "";
+ 
+          client.println("HTTP/1.1 200 OK");
+          client.println("Content-Type: text/html");
+          client.println();
+          client.println("<html>");
+          client.println("<head>");
+          client.println("<title>InCasa</title>");
+          client.println("<meta http-equiv='Content-Type' content='text/html; charset=ISO-8859-1'>");
+          client.println("<meta name='viewport' content='width=720, initial-scale=0.5' />");
+          client.println("<link rel='stylesheet' type='text/css' href='http://img.filipeflop.com/files/download/automacao/automacao_residencial.css' />");
+          client.println("<script type='text/javascript' src='http://img.filipeflop.com/files/download/automacao/automacao_residencial.js'></script>");
+          client.println("</head>");
+          client.println("<body>");
+          client.println("<div id='wrapper'><img alt='FILIPEFLOP' src='http://img.filipeflop.com/files/download/automacao/logoFF.jpg'/><br/>");
+          client.println("<div id='div1'>Rele 1</div>");
+          client.println("<div id='div2'>Rele 2</div>");
+          client.print("<div id='rele'></div><div id='estado' style='visibility: hidden;'>");
+          client.print(ligado);
+          client.println("</div>");
+          client.println("<div id='botao'></div>");
+          client.println("<div id='botao_2'></div>");
+          client.print("<div id='rele_2'></div><div id='estado_2' style='visibility: hidden;'>");
+          client.print(ligado_2);
+          client.println("</div>");
+          client.println("</div>");
+          client.println("<script>AlteraRele1()</script>");
+          client.println("<script>AlteraRele2()</script>");
+          client.println("</div>");
+          client.println("</body>");
+          client.println("</head>");
+ 
+          delay(1);
+          client.stop();
+        }
+      }
     }
-
-    delay(1);
-    connectLoop++;
-    if(connectLoop > 10000) {
-      Serial.println();
-      Serial.println(F("Timeout"));
-      client.stop();
-    }
-  }
-
-  Serial.println();
-  Serial.println(F("Desconectando"));
-  client.stop();
-  return 1;
+  }   
 }
