@@ -59,7 +59,7 @@ void servidor() {
           
           client.println("<head>");
           client.println("<title>InCasa</title>");
-          client.println("<meta http-equiv='Content-Type' content='text/html; charset=ISO-8859-1'>");
+          client.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
           client.println("<meta name='viewport' content='width=720, initial-scale=0.5' />");          
           client.println("<script type='text/javascript' src='https://cdn.rawgit.com/InCasa/arduino/master/js/app.js'></script>");
           client.println("</head>");
