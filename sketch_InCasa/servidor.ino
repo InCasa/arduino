@@ -60,9 +60,8 @@ void servidor() {
           client.println("<head>");
           client.println("<title>InCasa</title>");
           client.println("<meta http-equiv='Content-Type' content='text/html; charset=ISO-8859-1'>");
-          client.println("<meta name='viewport' content='width=720, initial-scale=0.5' />");
-          client.println("<link rel='stylesheet' type='text/css' href='http://img.filipeflop.com/files/download/automacao/automacao_residencial.css' />");
-          client.println("<script type='text/javascript' src='http://img.filipeflop.com/files/download/automacao/automacao_residencial.js'></script>");
+          client.println("<meta name='viewport' content='width=720, initial-scale=0.5' />");          
+          client.println("<script type='text/javascript' src='https://cdn.rawgit.com/InCasa/arduino/master/js/app.js'></script>");
           client.println("</head>");
           
           client.println("<body>"); 

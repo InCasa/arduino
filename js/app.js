@@ -5,9 +5,9 @@ function AlteraRele1(){
         document.getElementById("rele_1").innerHTML="<div class='rele1_ligado'></div>";
 		document.getElementById("botao_1").innerHTML="<a href='/?1_desligar' class='botao'>Desliga</a>";
     } else {
-        document.getElementById("estado").innerHTML="0";
-        document.getElementById("rele").innerHTML="<div class='rele1_desligado'></div>";
-        document.getElementById("botao").innerHTML="<a href='/?1_ligar' class='botao'>Liga</a>";
+        document.getElementById("estado_1").innerHTML="0";
+        document.getElementById("rele_1").innerHTML="<div class='rele1_desligado'></div>";
+        document.getElementById("botao_1").innerHTML="<a href='/?1_ligar' class='botao'>Liga</a>";
     }
 }
 
