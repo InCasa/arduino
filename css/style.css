@@ -78,7 +78,7 @@ div.rele2_desligado {
     height: 150px; 
 }
 
-#botao{
+#botao_1{
     position: absolute;
     right: 230px;
     top: 250px;
@@ -86,7 +86,7 @@ div.rele2_desligado {
     height: 256px;
 }
 
-.botao {
+.botao_1 {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 0px 0px 0px #ffffff;
@@ -110,7 +110,7 @@ div.rele2_desligado {
         text-align: center;
 }
 
-}.botao:active {
+}.botao_1:active {
 	position:relative;
 	top:1px;
 }
