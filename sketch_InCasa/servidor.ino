@@ -61,32 +61,34 @@ void servidor() {
           client.println("<title>InCasa</title>");
           client.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
           client.println("<meta name='viewport' content='width=720, initial-scale=0.5' />");          
-          client.println("<link rel='stylesheet' type='text/css' href='https://rawgit.com/InCasa/arduino/master/css/style.css'/>");
           client.println("<script type='text/javascript' src='https://rawgit.com/InCasa/arduino/master/js/app.js'></script>");
           client.println("</head>");
           
-          client.println("<body>"); 
-                   
-          client.println("<div id='div1'>Rele 1</div>");
-          client.println("<div id='div2'>Rele 2</div>");
+          client.println("<body>");                  
           
           client.print("<div id='rele_1'></div><div id='estado_1' style='visibility: hidden;'>");
           client.print(ligado_1);
           client.println("</div>");
-          
-          client.println("<div id='botao_1'></div>");
-          client.println("<div id='botao_2'></div>");
-          
+ 
           client.print("<div id='rele_2'></div><div id='estado_2' style='visibility: hidden;'>");
           client.print(ligado_2);
           client.println("</div>");
+
+          client.print("<div id='rele_3'></div><div id='estado_3' style='visibility: hidden;'>");
+          client.print(ligado_3);
+          client.println("</div>");
+
+          client.print("<div id='rele_4'></div><div id='estado_4' style='visibility: hidden;'>");
+          client.print(ligado_4);
+          client.println("</div>");
           
           client.println("<script>AlteraRele1()</script>");
-          client.println("<script>AlteraRele2()</script>");          
+          client.println("<script>AlteraRele2()</script>");
+          client.println("<script>AlteraRele3()</script>");
+          client.println("<script>AlteraRele4()</script>");          
           
-          client.println("</body>");
-          
-          client.println("</head>");
+          client.println("</body>");         
+          client.println("</html>");
 
           delay(1);
           client.stop();
