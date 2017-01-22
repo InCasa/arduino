@@ -11,7 +11,7 @@ void servidor() {
         }
         if (c == '\n')
         {
-          //Controle do rele1
+          //Controle do rele 1
           Serial.println(readString);
           //Liga o Rele 1
           if (readString.indexOf("?1_ligar") > 0)
@@ -31,7 +31,7 @@ void servidor() {
             }
           }
 
-          //Controle do rele2
+          //Controle do rele 2
           Serial.println(readString);
           //Liga o Rele 2
           if (readString.indexOf("?2_ligar") > 0)
@@ -50,6 +50,46 @@ void servidor() {
               ligado_2 = true;
             }
           }
+
+          //Controle do rele 3
+          Serial.println(readString);
+          //Liga o Rele 3
+          if (readString.indexOf("?3_ligar") > 0)
+          {
+            digitalWrite(pino_rele3, LOW);
+            Serial.println("Rele 3 Ligado");
+            ligado_3 = false;
+          }
+          else
+          {
+            //Desliga o Rele 3
+            if (readString.indexOf("?3_desligar") > 0)
+            {
+              digitalWrite(pino_rele3, HIGH);
+              Serial.println("Rele 3 Desligado");
+              ligado_3 = true;
+            }
+          }
+
+          //Controle do rele 4
+          Serial.println(readString);
+          //Liga o Rele 4
+          if (readString.indexOf("?4_ligar") > 0)
+          {
+            digitalWrite(pino_rele4, LOW);
+            Serial.println("Rele 4 Ligado");
+            ligado_4 = false;
+          }
+          else
+          {
+            //Desliga o Rele 4
+            if (readString.indexOf("?4_desligar") > 0)
+            {
+              digitalWrite(pino_rele4, HIGH);
+              Serial.println("Rele 4 Desligado");
+              ligado_4 = true;
+            }
+          }
           readString = "";
 
           client.println("HTTP/1.1 200 OK");
@@ -59,34 +99,13 @@ void servidor() {
           
           client.println("<head>");
           client.println("<title>InCasa</title>");
-          client.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-          client.println("<meta name='viewport' content='width=720, initial-scale=0.5' />");          
-          client.println("<script type='text/javascript' src='https://rawgit.com/InCasa/arduino/master/js/app.js'></script>");
+          client.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");                 
           client.println("</head>");
           
           client.println("<body>");                  
-          
-          client.print("<div id='rele_1'></div><div id='estado_1' style='visibility: hidden;'>");
-          client.print(ligado_1);
-          client.println("</div>");
- 
-          client.print("<div id='rele_2'></div><div id='estado_2' style='visibility: hidden;'>");
-          client.print(ligado_2);
-          client.println("</div>");
 
-          client.print("<div id='rele_3'></div><div id='estado_3' style='visibility: hidden;'>");
-          client.print(ligado_3);
-          client.println("</div>");
-
-          client.print("<div id='rele_4'></div><div id='estado_4' style='visibility: hidden;'>");
-          client.print(ligado_4);
-          client.println("</div>");
-          
-          client.println("<script>AlteraRele1()</script>");
-          client.println("<script>AlteraRele2()</script>");
-          client.println("<script>AlteraRele3()</script>");
-          client.println("<script>AlteraRele4()</script>");          
-          
+          client.println("Sistema Arduino");     
+           
           client.println("</body>");         
           client.println("</html>");
 

@@ -16,8 +16,8 @@ String readString;
 //6 - Sensor Presenca
 //7 - Rele
 //8 - Rele
-//9 -
-//10 -
+//9 - Rele
+//10 - Rele
 //11 -
 //12 -
 //13 -
@@ -34,9 +34,13 @@ EthernetServer server(80);
 // Pinos Rele
 int pino_rele1 = 7;
 int pino_rele2 = 8;
+int pino_rele3 = 9;
+int pino_rele4 = 10;
 
 boolean ligado_1 = true;
 boolean ligado_2 = true;
+boolean ligado_3 = true;
+boolean ligado_4 = true;
 
 //Presenca
 int pinopir = 6;  //Pino do sensor
@@ -54,6 +58,8 @@ void setup() {
   Serial.begin(9600);
   pinMode(pino_rele1, OUTPUT);
   pinMode(pino_rele2, OUTPUT);
+  pinMode(pino_rele3, OUTPUT);
+  pinMode(pino_rele4, OUTPUT);
 
   //Inicializa Ethernet Shield
   Ethernet.begin(mac, ip, gateway, subnet);
@@ -65,9 +71,11 @@ void setup() {
 
   pinMode(pinopir, INPUT); //Define o pino sensor de presenca como entrada
 
-  //Desliga os dois reles
+  //Desliga os reles
   digitalWrite(pino_rele1, HIGH);
   digitalWrite(pino_rele2, HIGH);
+  digitalWrite(pino_rele3, HIGH);
+  digitalWrite(pino_rele4, HIGH);
 }
 
 void loop() {
