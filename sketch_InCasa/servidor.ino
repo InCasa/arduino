@@ -90,6 +90,43 @@ void servidor() {
               ligado_4 = true;
             }
           }
+
+          //Retorno do Json de temperatura          
+          Serial.println(readString);
+          //Liga o Rele 4
+          if (readString.indexOf("?temperatura") > 0)
+          {
+            jsonTemperatura();
+            Serial.println(jsonTemperatura);            
+          }
+
+          //Retorno do Json de umidade          
+          Serial.println(readString);
+          //Liga o Rele 4
+          if (readString.indexOf("?umidade") > 0)
+          {
+            jsonUmidade();
+            Serial.println(jsonUmidade());            
+          }
+
+          //Retorno do Json de luminosidade          
+          Serial.println(readString);
+          //Liga o Rele 4
+          if (readString.indexOf("?luminosidade") > 0)
+          {
+            jsonLuminosidade();
+            Serial.println(jsonLuminosidade());            
+          }
+
+          //Retorno do Json de movimento          
+          Serial.println(readString);
+          //Liga o Rele 4
+          if (readString.indexOf("?movimento") > 0)
+          {
+            jsonMovimento();
+            Serial.println(jsonMovimento());            
+          }
+                    
           readString = "";
 
           client.println("HTTP/1.1 200 OK");

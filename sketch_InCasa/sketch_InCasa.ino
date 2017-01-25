@@ -79,5 +79,9 @@ void setup() {
 }
 
 void loop() {
+  Movimento();
+  Temperatura();
+  Umidade();
+  Luminosidade();
   servidor();
 }
