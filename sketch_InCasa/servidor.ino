@@ -16,18 +16,16 @@ void servidor() {
           //Liga o Rele 1
           if (readString.indexOf("?1_ligar") > 0)
           {
-            digitalWrite(pino_rele1, LOW);
-            Serial.println("Rele 1 Ligado");
-            ligado_1 = false;
+            acionaRele(1);
+            Serial.println("Rele 1 Ligado");            
           }
           else
           {
             //Desliga o Rele 1
             if (readString.indexOf("?1_desligar") > 0)
             {
-              digitalWrite(pino_rele1, HIGH);
-              Serial.println("Rele 1 Desligado");
-              ligado_1 = true;
+              desligaRele(1);
+              Serial.println("Rele 1 Desligado");              
             }
           }
 
@@ -36,18 +34,16 @@ void servidor() {
           //Liga o Rele 2
           if (readString.indexOf("?2_ligar") > 0)
           {
-            digitalWrite(pino_rele2, LOW);
-            Serial.println("Rele 2 Ligado");
-            ligado_2 = false;
+            acionaRele(2);
+            Serial.println("Rele 2 Ligado");            
           }
           else
           {
             //Desliga o Rele 2
             if (readString.indexOf("?2_desligar") > 0)
             {
-              digitalWrite(pino_rele2, HIGH);
-              Serial.println("Rele 2 Desligado");
-              ligado_2 = true;
+              desligaRele(2);
+              Serial.println("Rele 2 Desligado");              
             }
           }
 
@@ -56,18 +52,16 @@ void servidor() {
           //Liga o Rele 3
           if (readString.indexOf("?3_ligar") > 0)
           {
-            digitalWrite(pino_rele3, LOW);
-            Serial.println("Rele 3 Ligado");
-            ligado_3 = false;
+            acionaRele(3);
+            Serial.println("Rele 3 Ligado");            
           }
           else
           {
             //Desliga o Rele 3
             if (readString.indexOf("?3_desligar") > 0)
             {
-              digitalWrite(pino_rele3, HIGH);
-              Serial.println("Rele 3 Desligado");
-              ligado_3 = true;
+              desligaRele(3);
+              Serial.println("Rele 3 Desligado");              
             }
           }
 
@@ -76,18 +70,16 @@ void servidor() {
           //Liga o Rele 4
           if (readString.indexOf("?4_ligar") > 0)
           {
-            digitalWrite(pino_rele4, LOW);
-            Serial.println("Rele 4 Ligado");
-            ligado_4 = false;
+            acionaRele(4);
+            Serial.println("Rele 4 Ligado");            
           }
           else
           {
             //Desliga o Rele 4
             if (readString.indexOf("?4_desligar") > 0)
             {
-              digitalWrite(pino_rele4, HIGH);
-              Serial.println("Rele 4 Desligado");
-              ligado_4 = true;
+              desligaRele(4);
+              Serial.println("Rele 4 Desligado");              
             }
           }
 

@@ -3,11 +3,11 @@ void Movimento() {
 }
 
 void Temperatura() {
-  float temperatura = dht.readTemperature(); //Le o valor do sensor de temperatura
+  temperatura = dht.readTemperature(); //Le o valor do sensor de temperatura
 }
 
 void Umidade() {
-  float umidade = dht.readHumidity(); //Le o valor do sensor de umidade
+  umidade = dht.readHumidity(); //Le o valor do sensor de umidade
 }
 
 void Luminosidade() {

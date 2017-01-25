@@ -51,7 +51,13 @@ DHT dht(5, DHT22);
 
 // Define o LDR
 int ldrPin = 0; //LDR no pino analígico 8
-int ldrValor = 0; //Valor lido do LDR
+int luminosidade = 0; //Valor lido do LDR
+
+// Variavel para guardar o valor do sensor de temperatura
+float temperatura = 0;
+
+// Variavel para guardar o valor do sensor de umidade
+float umidade = 0;
 
 void setup() {
 
