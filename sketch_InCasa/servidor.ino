@@ -88,39 +88,67 @@ void servidor() {
           //Liga o Rele 4
           if (readString.indexOf("?temperatura") > 0)
           {
-            jsonTemperatura();
-            Serial.println(jsonTemperatura);            
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-Type: application/json");
+            client.println();
+            
+            client.print("('{");
+            client.print("\"valor");
+            client.print("\": ");
+            client.print(temperatura);
+            client.println("}')");        
           }
 
           //Retorno do Json de umidade          
           Serial.println(readString);
-          //Liga o Rele 4
+          
           if (readString.indexOf("?umidade") > 0)
           {
-            jsonUmidade();
-            Serial.println(jsonUmidade());            
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-Type: application/json");
+            client.println();
+            
+            client.print("('{");
+            client.print("\"valor");
+            client.print("\": ");
+            client.print(umidade);
+            client.println("}')");                       
           }
 
           //Retorno do Json de luminosidade          
           Serial.println(readString);
-          //Liga o Rele 4
+          
           if (readString.indexOf("?luminosidade") > 0)
           {
-            jsonLuminosidade();
-            Serial.println(jsonLuminosidade());            
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-Type: application/json");
+            client.println();
+            
+            client.print("('{");
+            client.print("\"valor");
+            client.print("\": ");
+            client.print(luminosidade);
+            client.println("}')");           
           }
 
           //Retorno do Json de movimento          
           Serial.println(readString);
-          //Liga o Rele 4
+          
           if (readString.indexOf("?movimento") > 0)
           {
-            jsonMovimento();
-            Serial.println(jsonMovimento());            
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-Type: application/json");
+            client.println();
+            
+            client.print("('{");
+            client.print("\"valor");
+            client.print("\": ");
+            client.print(movimento);
+            client.println("}')");         
           }
                     
           readString = "";
-
+          /*
           client.println("HTTP/1.1 200 OK");
           client.println("Content-Type: text/html");
           client.println();
@@ -137,9 +165,10 @@ void servidor() {
            
           client.println("</body>");         
           client.println("</html>");
-
+          */
           delay(1);
           client.stop();
+          
         }
       }
     }

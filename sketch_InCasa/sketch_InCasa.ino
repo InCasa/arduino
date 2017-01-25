@@ -14,10 +14,10 @@ String readString;
 //4 -
 //5 - Sensor Temperatura
 //6 - Sensor Presenca
-//7 - Rele
-//8 - Rele
-//9 - Rele
-//10 - Rele
+//7 - Rele 1
+//8 - Rele 2
+//9 - Rele 3
+//10 - Rele 4
 //11 -
 //12 -
 //13 -
@@ -25,8 +25,8 @@ String readString;
 
 //Definicoes de IP, mascara de rede e gateway
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-byte ip[] = { 192, 168, 1, 150 };
-byte gateway[] = { 192, 168, 1, 1 };
+byte ip[] = { 192, 168, 0, 150 };
+byte gateway[] = { 192, 168, 0, 1 };
 byte subnet[] = { 255, 255, 255, 0 };
 
 EthernetServer server(80);
