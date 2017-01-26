@@ -156,10 +156,11 @@ void servidor() {
             client.print('{');
             client.print("\"valor");
             client.print("\": ");
-            if(ligado_1 == true) {
-              client.print(true);  
+            val = digitalRead(pino_rele1);  // ler o valor de entrada
+            if (val == HIGH) {                       
+              client.print(false);  
             } else {
-              client.print(false);
+              client.print(true);
             }            
             client.println('}');         
           }
@@ -173,12 +174,13 @@ void servidor() {
             client.print('{');
             client.print("\"valor");
             client.print("\": ");
-            if(ligado_2 == true) {
-              client.print(true);  
+            val = digitalRead(pino_rele2);  // ler o valor de entrada
+            if (val == HIGH) {                       
+              client.print(false);  
             } else {
-              client.print(false);
+              client.print(true);
             }            
-            client.println('}');         
+            client.println('}');          
           }
 
            if (readString.indexOf("?rele/3") > 0)
@@ -190,12 +192,13 @@ void servidor() {
             client.print('{');
             client.print("\"valor");
             client.print("\": ");
-            if(ligado_3 == true) {
-              client.print(true);  
+           val = digitalRead(pino_rele3);  // ler o valor de entrada
+            if (val == HIGH) {                       
+              client.print(false);  
             } else {
-              client.print(false);
+              client.print(true);
             }            
-            client.println('}');         
+            client.println('}');        
           }
 
            if (readString.indexOf("?rele/4") > 0)
@@ -207,10 +210,11 @@ void servidor() {
             client.print('{');
             client.print("\"valor");
             client.print("\": ");
-            if(ligado_4 == true) {
-              client.print(true);  
+            val = digitalRead(pino_rele4);  // ler o valor de entrada
+            if (val == HIGH) {                       
+              client.print(false);  
             } else {
-              client.print(false);
+              client.print(true);
             }            
             client.println('}');         
           }
