@@ -146,6 +146,74 @@ void servidor() {
             client.print(movimento);
             client.println('}');         
           }
+
+          if (readString.indexOf("?rele/1") > 0)
+          {
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-Type: application/json");
+            client.println();
+            
+            client.print('{');
+            client.print("\"valor");
+            client.print("\": ");
+            if(ligado_1 == true) {
+              client.print(true);  
+            } else {
+              client.print(false);
+            }            
+            client.println('}');         
+          }
+
+           if (readString.indexOf("?rele/2") > 0)
+          {
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-Type: application/json");
+            client.println();
+            
+            client.print('{');
+            client.print("\"valor");
+            client.print("\": ");
+            if(ligado_2 == true) {
+              client.print(true);  
+            } else {
+              client.print(false);
+            }            
+            client.println('}');         
+          }
+
+           if (readString.indexOf("?rele/3") > 0)
+          {
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-Type: application/json");
+            client.println();
+            
+            client.print('{');
+            client.print("\"valor");
+            client.print("\": ");
+            if(ligado_3 == true) {
+              client.print(true);  
+            } else {
+              client.print(false);
+            }            
+            client.println('}');         
+          }
+
+           if (readString.indexOf("?rele/4") > 0)
+          {
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-Type: application/json");
+            client.println();
+            
+            client.print('{');
+            client.print("\"valor");
+            client.print("\": ");
+            if(ligado_4 == true) {
+              client.print(true);  
+            } else {
+              client.print(false);
+            }            
+            client.println('}');         
+          }
                     
           readString = "";
           /*
