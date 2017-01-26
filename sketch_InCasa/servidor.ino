@@ -92,11 +92,11 @@ void servidor() {
             client.println("Content-Type: application/json");
             client.println();
             
-            client.print("('{");
+            client.print('{');
             client.print("\"valor");
             client.print("\": ");
             client.print(temperatura);
-            client.println("}')");        
+            client.println('}');        
           }
 
           //Retorno do Json de umidade          
@@ -108,11 +108,11 @@ void servidor() {
             client.println("Content-Type: application/json");
             client.println();
             
-            client.print("('{");
+            client.print('{');
             client.print("\"valor");
             client.print("\": ");
             client.print(umidade);
-            client.println("}')");                       
+            client.println('}');                       
           }
 
           //Retorno do Json de luminosidade          
@@ -124,11 +124,11 @@ void servidor() {
             client.println("Content-Type: application/json");
             client.println();
             
-            client.print("('{");
+            client.print('{');
             client.print("\"valor");
             client.print("\": ");
             client.print(luminosidade);
-            client.println("}')");           
+            client.println('}');           
           }
 
           //Retorno do Json de movimento          
@@ -140,11 +140,11 @@ void servidor() {
             client.println("Content-Type: application/json");
             client.println();
             
-            client.print("('{");
+            client.print('{');
             client.print("\"valor");
             client.print("\": ");
             client.print(movimento);
-            client.println("}')");         
+            client.println('}');         
           }
                     
           readString = "";
