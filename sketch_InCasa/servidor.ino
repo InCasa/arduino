@@ -1,3 +1,4 @@
+int val;
 void servidor() {
   EthernetClient client = server.available();
   if (client) {
