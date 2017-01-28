@@ -10,6 +10,7 @@ void Umidade() {
   umidade = dht.readHumidity(); //Le o valor do sensor de umidade
 }
 
-void Luminosidade() {
-  luminosidade = analogRead(ldrPin); //Le o valor do sensor de luminosidade(O valor lido será entre 0 e 1023)
+void Luminosidade() {  
+  int luz = analogRead(ldrPin); //Le o valor do sensor de luminosidade(O valor lido será entre 0 e 1023)
+  luminosidade = map(-luz, 0, 1024, 0, 100) + (100);
 }
