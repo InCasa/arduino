@@ -97,6 +97,10 @@ void servidor() {
             client.print("\"valor");
             client.print("\": ");
             client.print(temperatura);
+            client.print(",");
+            client.print("\"porta");
+            client.print("\": ");
+            client.print(pinoDHT);
             client.println('}');        
           }
 
@@ -113,7 +117,11 @@ void servidor() {
             client.print("\"valor");
             client.print("\": ");
             client.print(umidade);
-            client.println('}');                       
+            client.print(",");
+            client.print("\"porta");
+            client.print("\": ");
+            client.print(pinoDHT);
+            client.println('}');                      
           }
 
           //Retorno do Json de luminosidade          
@@ -129,7 +137,13 @@ void servidor() {
             client.print("\"valor");
             client.print("\": ");
             client.print(luminosidade);
-            client.println('}');           
+            client.print(",");
+            client.print("\"porta");
+            client.print("\": ");
+            client.print('"');
+            client.print(pinoLDR);
+            client.print('"');
+            client.println('}');             
           }
 
           //Retorno do Json de movimento          
@@ -144,7 +158,11 @@ void servidor() {
             client.print('{');
             client.print("\"valor");
             client.print("\": ");
-            client.print(movimento);
+            client.print(movimento);            
+            client.print(",");
+            client.print("\"porta");
+            client.print("\": ");
+            client.print(pinopir);
             client.println('}');         
           }
 
@@ -162,8 +180,12 @@ void servidor() {
               client.print(false);  
             } else {
               client.print(true);
-            }            
-            client.println('}');         
+            }
+            client.print(",");
+            client.print("\"porta");
+            client.print("\": ");
+            client.print(pino_rele1);
+            client.println('}');        
           }
 
            if (readString.indexOf("?rele/2") > 0)
@@ -181,7 +203,11 @@ void servidor() {
             } else {
               client.print(true);
             }            
-            client.println('}');          
+            client.print(",");
+            client.print("\"porta");
+            client.print("\": ");
+            client.print(pino_rele2);
+            client.println('}');            
           }
 
            if (readString.indexOf("?rele/3") > 0)
@@ -199,6 +225,10 @@ void servidor() {
             } else {
               client.print(true);
             }            
+            client.print(",");
+            client.print("\"porta");
+            client.print("\": ");
+            client.print(pino_rele3);
             client.println('}');        
           }
 
@@ -217,7 +247,11 @@ void servidor() {
             } else {
               client.print(true);
             }            
-            client.println('}');         
+            client.print(",");
+            client.print("\"porta");
+            client.print("\": ");
+            client.print(pino_rele4);
+            client.println('}');          
           }
                     
           readString = "";

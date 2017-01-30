@@ -48,10 +48,12 @@ int movimento;  //Variavel para guardar valor do sensor de presenca
 
 // Define pino e sensor DHT22
 DHT dht(5, DHT22);
+int pinoDHT = 5;
 
 // Define o LDR
 int ldrPin = 0; //LDR no pino analígico 8
 int luminosidade = 0; //Valor lido do LDR
+char pinoLDR[] = "A0";
 
 // Variavel para guardar o valor do sensor de temperatura
 float temperatura = 0;
