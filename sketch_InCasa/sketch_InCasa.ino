@@ -37,11 +37,6 @@ int pino_rele2 = 8;
 int pino_rele3 = 9;
 int pino_rele4 = 10;
 
-boolean ligado_1 = true;
-boolean ligado_2 = true;
-boolean ligado_3 = true;
-boolean ligado_4 = true;
-
 //Presenca
 int pinopir = 6;  //Pino do sensor
 int movimento;  //Variavel para guardar valor do sensor de presenca

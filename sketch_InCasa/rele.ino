@@ -2,20 +2,16 @@
 void acionaRele(int canal) {
   switch (canal) {
     case 1:
-      digitalWrite(pino_rele1, LOW);
-      ligado_1 = false;
+      digitalWrite(pino_rele1, LOW);      
       break;
     case 2:
-      digitalWrite(pino_rele2, LOW);
-      ligado_2 = false;
+      digitalWrite(pino_rele2, LOW);      
       break;
     case 3:
-      digitalWrite(pino_rele3, LOW);
-      ligado_3 = false;
+      digitalWrite(pino_rele3, LOW);      
       break;
     case 4:
-      digitalWrite(pino_rele4, LOW);
-      ligado_4 = false;
+      digitalWrite(pino_rele4, LOW);      
       break;    
   }
 }
@@ -24,20 +20,16 @@ void acionaRele(int canal) {
 void desligaRele(int canal) {
   switch (canal) {
     case 1:
-      digitalWrite(pino_rele1, HIGH);
-      ligado_1 = true;
+      digitalWrite(pino_rele1, HIGH);      
       break;
     case 2:
-      digitalWrite(pino_rele2, HIGH);
-      ligado_2 = true;
+      digitalWrite(pino_rele2, HIGH);      
       break;
     case 3:
-      digitalWrite(pino_rele3, HIGH);
-      ligado_3 = true;
+      digitalWrite(pino_rele3, HIGH);      
       break;
     case 4:
-      digitalWrite(pino_rele4, HIGH);
-      ligado_4 = true;
+      digitalWrite(pino_rele4, HIGH);      
       break;
   }
 }
