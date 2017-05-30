@@ -255,24 +255,7 @@ void servidor() {
           }
                     
           readString = "";
-          /*
-          client.println("HTTP/1.1 200 OK");
-          client.println("Content-Type: text/html");
-          client.println();
-          client.println("<html>");
           
-          client.println("<head>");
-          client.println("<title>InCasa</title>");
-          client.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");                 
-          client.println("</head>");
-          
-          client.println("<body>");                  
-
-          client.println("Sistema Arduino");     
-           
-          client.println("</body>");         
-          client.println("</html>");
-          */
           delay(1);
           client.stop();
           

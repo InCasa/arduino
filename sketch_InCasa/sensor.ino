@@ -11,6 +11,6 @@ void Umidade() {
 }
 
 void Luminosidade() {  
-  int luz = analogRead(ldrPin); //Le o valor do sensor de luminosidade(O valor lido será entre 0 e 1023)
-  luminosidade = map(-luz, 0, 1024, 0, 100) + (100);
+  //Le o valor do sensor de luminosidade(O valor lido será entre 0 e 1023)
+  luminosidade = analogRead(ldrPin);
 }
