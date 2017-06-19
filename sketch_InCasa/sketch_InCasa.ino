@@ -18,9 +18,9 @@ String readString;
 //8 - Rele 2
 //9 - Rele 3
 //10 - Rele 4
-//11 -
-//12 -
-//13 -
+//11 - Ethernet
+//12 - Ethernet
+//13 - Ethernet
 //A0 - LDR
 
 //Definicoes de IP, mascara de rede e gateway
